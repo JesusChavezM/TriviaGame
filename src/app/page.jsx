@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ImgDelete from '@/assets/img_delete.svg'
 import ImgEdit from '@/assets/img_edit.svg'
+import ImgAdd from '@/assets/img_add.svg'
 
 export default function Home() {
 
@@ -31,7 +32,14 @@ export default function Home() {
 
   return (
     <div className="p-4 bg-gray-50">
-      <h1 className="text-3xl font-semibold text-gray-900 mb-4">Preguntas</h1>
+      <div className='flex items-center justify-between mb-2'>
+        <h1 className="text-3xl font-semibold text-gray-900">Preguntas</h1>
+        <button className="text-gray-500 hover:text-gray-700 bg-gray-200 rounded-lg p-1 border border-gray-600 mr-1">
+          <Link href="/add-question">
+            <Image src={ImgAdd} height={23} width={23} alt="add-button" />
+          </Link>
+        </button>
+      </div>
       <div className="space-y-4">
         {questions.map((question, index) => (
           <div key={index} className="bg-gray-100 p-4 border border-500 rounded-lg shadow-md">
