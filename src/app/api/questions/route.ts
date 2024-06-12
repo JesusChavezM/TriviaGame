@@ -6,14 +6,26 @@ import connect from '@/lib/mongodb';
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: any) {
-    await connect();
-    const questions = await Question.find({});
-    return new NextResponse(JSON.stringify(questions), {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+export async function GET(request: NextRequest) {
+    const url = process.env.MONGO_URI || "";
+
+    const client = new MongoClient(url);
+
+    try {
+        await client.connect();
+
+        const collection = client.db("test").collection("questions");
+
+        const questions = await collection.find({}).toArray();
+
+        return NextResponse.json(questions);
+    } catch (err: any) {
+        console.log(err);
+        return NextResponse.json({ message: "Error fetching questions" }, { status: 500 });
+    } finally {
+        await client.close();
+    }
+
 }
 
 export async function POST(request: any) {
