@@ -8,12 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-      'mulberry': {
+      colors: {
         '50': '#fdf6fd',
         '100': '#faedf9',
         '200': '#f4daf0',
